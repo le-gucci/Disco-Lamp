@@ -6,6 +6,8 @@ camfeed = cv.VideoCapture(0)
 while True:
     isTrue, frame = camfeed.read()
 
+    print(isTrue)
+
     ir = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
 
     lower_bound = np.array([130, 50, 50])
