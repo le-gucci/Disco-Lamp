@@ -31,7 +31,7 @@ while True:
 
     ir = cv.cvtColor(frame, cv.COLOR_RGB2HSV)
 
-    lower_bound = np.array([140, 50, 50])
+    lower_bound = np.array([140, 220, 220])
     upper_bound = np.array([155, 255, 255])
 
     irmask = cv.inRange(ir, lower_bound, upper_bound)
