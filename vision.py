@@ -1,6 +1,7 @@
 import cv2 as cv
 from picamera2 import Picamera2
 import numpy as np
+from motorControl import adjust ## moneyyyy
 
 picam2 = Picamera2()
 
@@ -16,11 +17,14 @@ while True:
     w = frame.shape[1]
     h = frame.shape[0]
 
-    cv.circle(frame, (w//2, h//2), 3, (255, 0, 0), 1)
-    ##(B, G, R) = frame[h//2, w//2]
+    cx = w//2
+    cy = h//2
+
+    cv.circle(frame, (cx, cy), 3, (255, 0, 0), 1)
+    ##(B, G, R) = frame[cy, cx]
     ##rgb = [int(x) for x in (R, G, B)]
 
-    (h, s, v) = cv.cvtColor(frame, cv.COLOR_BGR2HSV)[h//2, w//2]
+    (h, s, v) = cv.cvtColor(frame, cv.COLOR_BGR2HSV)[cy, cx]
     hsv = [int(x) for x in (h, s, v)]
     print(hsv)
     ##print(isTrue)
@@ -42,11 +46,12 @@ while True:
         M = cv.moments(irblob)
 
         if M["m00"] != 0:
-            cx = int(M["m10"]/M["m00"])
-            cy = int(M["m01"]/M["m00"])
+            tx = int(M["m10"]/M["m00"])
+            ty = int(M["m01"]/M["m00"])
 
-            cv.circle(frame, (cx, cy), 5, (0, 255, 0), 2)
-            #print(cx, cy)
+            cv.circle(frame, (tx, ty), 5, (0, 255, 0), 2)
+
+            adjust(cx, cy, tx, ty)
 
 
     cv.imshow("view", frame)
