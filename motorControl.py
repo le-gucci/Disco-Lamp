@@ -1,4 +1,4 @@
-from gpiosero import AngularServo
+from gpiozero import AngularServo
 from time import sleep
 from gpiozero.pins.pigpio import PiGPIOFactory
 
