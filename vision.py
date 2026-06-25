@@ -26,7 +26,7 @@ while True:
 
     (h, s, v) = cv.cvtColor(frame, cv.COLOR_BGR2HSV)[cy, cx]
     hsv = [int(x) for x in (h, s, v)]
-    print(hsv)
+    ##print(hsv)
     ##print(isTrue)
 
     ir = cv.cvtColor(frame, cv.COLOR_RGB2HSV)
