@@ -8,11 +8,21 @@ config = picam2.create_preview_configuration(main={"size": (640, 480)})
 picam2.configure(config)
 picam2.start()
 
-## camfeed = cv.VideoCapture(0)
+#camfeed = cv.VideoCapture(0)
 
 while True:
     frame = picam2.capture_array()
+    #isTrue, frame = camfeed.read()
+    w = frame.shape[1]
+    h = frame.shape[0]
 
+    cv.circle(frame, (w//2, h//2), 3, (255, 0, 0), 1)
+    ##(B, G, R) = frame[h//2, w//2]
+    ##rgb = [int(x) for x in (R, G, B)]
+
+    (h, s, v) = cv.cvtColor(frame, cv.COLOR_BGR2HSV)[h//2, w//2]
+    hsv = [int(x) for x in (h, s, v)]
+    print(hsv)
     ##print(isTrue)
 
     ir = cv.cvtColor(frame, cv.COLOR_RGB2HSV)
@@ -36,7 +46,7 @@ while True:
             cy = int(M["m01"]/M["m00"])
 
             cv.circle(frame, (cx, cy), 5, (0, 255, 0), 2)
-            print(cx, cy)
+            #print(cx, cy)
 
 
     cv.imshow("view", frame)
