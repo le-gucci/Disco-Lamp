@@ -1,6 +1,7 @@
 ## once maxed out the angles stop bc they reach 89 and then become ineligble for change. so you must account for dierction
 
 from gpiozero import AngularServo
+from gpiozero.exc import OutputDeviceBadValue
 from time import sleep
 from gpiozero.pins.pigpio import PiGPIOFactory
 from handy import *
@@ -28,7 +29,7 @@ def adjust(cx, cy, tx, ty):
         if sign(deltay) != sign(tilt.angle) or abs(tilt.angle) < 89:
             try:
                 tilt.angle += 1.5*deltay//MOE
-                
+
             except OutputDeviceBadValue:
                 tilt.angle = 89 * sign(pan.angle)
 
