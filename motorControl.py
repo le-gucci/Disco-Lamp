@@ -17,11 +17,11 @@ def adjust(cx, cy, tx, ty):
 
     if abs(deltax) > MOE:
         if sign(deltax) != sign(pan.angle) or abs(pan.angle) < 89:
-            pan.angle += 1*sign(deltax)
+            pan.angle += sign(deltax) * 1.5*deltax//MOE
                 
     if abs(deltay) > MOE:
         if sign(deltay) != sign(tilt.angle) or abs(tilt.angle) < 89:
-            tilt.angle += 1*sign(deltay)
+            tilt.angle += sign(deltay) * 1.5*deltay//MOE
 
 
 #####                neat implementation           ###################
