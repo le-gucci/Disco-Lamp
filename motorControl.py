@@ -31,7 +31,7 @@ def adjust(cx, cy, tx, ty):
                 tilt.angle += 1.5*deltay//MOE
 
             except OutputDeviceBadValue:
-                tilt.angle = 89 * sign(pan.angle)
+                tilt.angle = 89 * sign(tilt.angle)
 
 
 #####                neat implementation           ###################
